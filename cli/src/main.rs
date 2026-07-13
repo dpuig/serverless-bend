@@ -44,6 +44,8 @@ name = "bend-wrapper"
 version = "0.1.0"
 edition = "2024"
 
+[workspace]
+
 [dependencies]
 axum = "0.8"
 tokio = { version = "1", features = ["full"] }
@@ -70,8 +72,17 @@ async fn main() {
 }
 
 async fn execute_handler(Json(payload): Json<Value>) -> impl IntoResponse {
-    let arg = payload.to_string();
-    let bend_term = format!("{:?}", arg);
+    let bend_term = if let Some(data) = payload.get("data") {
+        if data.is_number() {
+            data.to_string()
+        } else if let Some(s) = data.as_str() {
+            format!("{:?}", s)
+        } else {
+            format!("{:?}", data.to_string())
+        }
+    } else {
+        format!("{:?}", payload.to_string())
+    };
     let output = Command::new("bend").arg("run-c").arg("script.bend").arg(&bend_term).output();
     match output {
         Ok(out) => {
@@ -96,7 +107,7 @@ RUN cargo build --release
 
 FROM rust:latest
 WORKDIR /app
-COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 /opt/extensions/ /opt/extensions/
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.9.0 /lambda-adapter /opt/extensions/lambda-adapter
 RUN cargo install hvm
 RUN cargo install bend-lang
 COPY --from=builder /app/target/release/bend-wrapper /usr/local/bin/bend-wrapper

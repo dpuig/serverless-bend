@@ -25,10 +25,16 @@ use std::process::Command;
 async fn execute_handler(Json(payload): Json<Value>) -> impl IntoResponse {
     println!("Received payload: {:?}", payload);
     
-    let arg = payload.to_string();
-    // Wrap the string in quotes and escape inner quotes so Bend parses it as a string term
-    let bend_term = format!("{:?}", arg);
-    
+    let bend_term = if let Some(data) = payload.get("data") {
+        if data.is_number() {
+            data.to_string()
+        } else {
+            format!("{:?}", data.as_str().unwrap_or(&data.to_string()))
+        }
+    } else {
+        format!("{:?}", payload.to_string())
+    };
+
     let output = Command::new("bend")
         .arg("run-c")
         .arg("script.bend")
