@@ -61,12 +61,12 @@ Your Bend scripts stay completely pure. We handle the JSON serialization, the HT
 Ensure you have Rust and the Google Cloud SDK (`gcloud`) installed and configured.
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/serverless-bend.git
+git clone https://github.com/dpuig/serverless-bend.git
 cd serverless-bend
 cargo install --path cli
 ```
 
-## Contributing (We want you!)
+## Contributing
 
 We built this MVP to prove how easy it *should* be to deploy Bend code. Now we want to make it unstoppable, and this is an open-source project meant for the community. 
 
@@ -75,7 +75,7 @@ Here are some areas we'd love help with:
 - **Zero-Copy Serialization:** Optimize the data bridge between the Rust HTTP wrapper and the Bend runtime.
 - **Advanced JSON Parsing:** Help build or expose Bend primitives for natively parsing deeply nested HTTP payloads.
 
-Check out the [Open Issues](https://github.com/YOUR_USERNAME/serverless-bend/issues) or drop a PR!
+Check out the [Open Issues](https://github.com/dpuig/serverless-bend/issues) or drop a PR!
 
 ## License
 
