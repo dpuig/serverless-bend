@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🚀 Serverless-Bend</h1>
+  <h1>Serverless-Bend</h1>
   <p><strong>A frictionless CLI framework to instantly deploy <a href="https://github.com/HigherOrderCO/Bend">Bend</a> scripts as serverless HTTP endpoints.</strong></p>
   
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -14,7 +14,7 @@ No managing Dockerfiles. No configuring CI/CD pipelines. No writing boilerplate 
 
 ---
 
-## ⚡️ The 60-Second "Hello World"
+## The 60-Second "Hello World"
 
 **1. Write your Bend script (`hello.bend`)**
 ```python
@@ -38,7 +38,7 @@ $ curl -X POST -H "Content-Type: application/json" -d '{"data": 99}' https://ser
 {"result":"Result: \"{\\\"data\\\":99}\"","status":"success"}
 ```
 
-## 🛠️ How it Works
+## How it Works
 
 Under the hood, `Serverless-Bend` is heavily inspired by the Serverless Framework:
 1. **The CLI (`bend-cloud`)** dynamically scaffolds a production-ready Dockerfile for your exact script.
@@ -47,7 +47,7 @@ Under the hood, `Serverless-Bend` is heavily inspired by the Serverless Framewor
 
 Your Bend scripts stay completely pure. We handle the JSON serialization, the HTTP layer, and the network I/O.
 
-## 📦 Installation
+## Installation
 
 Ensure you have Rust and the Google Cloud SDK (`gcloud`) installed and configured.
 
@@ -57,7 +57,7 @@ cd serverless-bend
 cargo install --path cli
 ```
 
-## 🤝 Contributing (We want you!)
+## Contributing (We want you!)
 
 We built this MVP to prove how easy it *should* be to deploy Bend code. Now we want to make it unstoppable, and this is an open-source project meant for the community. 
 
@@ -68,6 +68,6 @@ Here are some areas we'd love help with:
 
 Check out the [Open Issues](https://github.com/YOUR_USERNAME/serverless-bend/issues) or drop a PR!
 
-## 📜 License
+## License
 
 MIT
