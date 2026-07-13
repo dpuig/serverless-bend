@@ -23,12 +23,21 @@ def main(arg):
 ```
 
 **2. Deploy it to the cloud**
+By default, this deploys to Google Cloud Run:
 ```bash
 $ bend-cloud deploy hello.bend
 Target script to deploy: hello.bend
+Target provider: gcp
 Successfully generated Docker environment...
 Deploying to Google Cloud Run...
 Deploy successful! Endpoint URL: https://serverless-bend-endpoint-abc123.a.run.app
+```
+
+**Multi-Cloud Support**
+You can deploy to AWS (Lambda) or Azure (Container Apps) by specifying a provider:
+```bash
+$ bend-cloud deploy hello.bend --provider aws
+$ bend-cloud deploy hello.bend --provider azure
 ```
 
 **3. Hit your new massively parallel API**
@@ -62,7 +71,7 @@ cargo install --path cli
 We built this MVP to prove how easy it *should* be to deploy Bend code. Now we want to make it unstoppable, and this is an open-source project meant for the community. 
 
 Here are some areas we'd love help with:
-- **AWS Lambda & Cloudflare Workers:** Bring the deployment magic to other clouds.
+- **Cloudflare Workers & Vercel:** Bring the deployment magic to other serverless platforms.
 - **Zero-Copy Serialization:** Optimize the data bridge between the Rust HTTP wrapper and the Bend runtime.
 - **Advanced JSON Parsing:** Help build or expose Bend primitives for natively parsing deeply nested HTTP payloads.
 
